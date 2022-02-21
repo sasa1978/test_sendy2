@@ -1,0 +1,18 @@
+FROM golang:1.17
+
+RUN apt update
+
+RUN apt -y upgrade
+
+RUN apt -y install mc
+
+ADD . /go/src/test1
+
+WORKDIR /go/src/test1
+
+RUN go install /go/src/test1/client
+
+EXPOSE 8080
+
+ENTRYPOINT ["/go/bin/client"]
+
